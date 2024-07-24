@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: exemplo
+  # Labels do Deployment (nao do Pod)
+  labels:
+    app: exemplo
+# Especificacao (spec) do Deployment
+spec:
+  # Especifica a qual/quais Pods o Deployment se refere
+  selector:
+    matchLabels:
+      app: exemplo
+  template:
+    # Labels do Pod
+    metadata:
+      labels:
+        app: exemplo
+    # Especificacao (spec) do Pod
+    spec:
+      containers:
+      - name: exemplo
+        image: leommiranda/exemplo_local_django:latest
+        command: ["/bin/bash", "/start"]
+        ports:
+        - containerPort: 8000
+        env:
+        - name: DATABASE_URL
+          value: postgres://postgres:postgres@exemplo-postgres.default.svc.cluster.local:5432/postgres
+        - name: ALLOWED_HOSTS
+          value: localhost,{{ .Values.hostname }}
+        - name: USE_DOCKER
+          value: "yes"
+        - name: IPYTHONDIR
+          value: /app/.ipython
+        resources:
+          limits:
+            memory: 1.5Gi
+            cpu: "1"
+          requests:
+            memory: 1.5Gi
+            cpu: "1"

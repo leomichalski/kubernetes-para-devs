@@ -1,0 +1,33 @@
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: exemplo-postgres
+  labels:
+    app: exemplo-postgres
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: exemplo-postgres
+  template:
+    metadata:
+      labels:
+        app: exemplo-postgres
+    spec:
+      containers:
+      - name: exemplo-postgres
+        image: postgres:16
+        ports:
+        - containerPort: 5432
+        env:
+        - name: POSTGRES_DB
+          value: postgres
+        - name: POSTGRES_PORT
+          value: '5432'
+        - name: POSTGRES_HOST
+          value: 0.0.0.0
+        - name: POSTGRES_USER
+          value: postgres
+        - name: POSTGRES_PASSWORD
+          value: postgres

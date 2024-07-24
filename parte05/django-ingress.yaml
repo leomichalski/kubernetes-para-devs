@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: exemplo
+  # Labels do Ingress
+  labels:
+    app: exemplo
+spec:
+  rules:
+  - host: aula.gces.com
+    http:
+      paths:
+        - pathType: Prefix
+          path: "/"
+          backend:
+            service:
+              name: exemplo
+              port:
+                name: http

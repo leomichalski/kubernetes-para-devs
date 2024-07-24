@@ -1,0 +1,21 @@
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: exemplo
+spec:
+  minReplicas: 5
+  maxReplicas: 10
+  # Especifica qual Deployment sera utilizado
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: exemplo
+  # Especifica quando aumentar a quantidade de replicas
+  # Importante fazer testes de carga para escolher uma boa metrica
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 50

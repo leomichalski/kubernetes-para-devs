@@ -1,42 +1,27 @@
-# Controller Pattern
+# Issuer
 
-Mais em <https://kubernetes.io/pt-br/docs/concepts/architecture/controller/>
+Pode ser usado por vários recursos Ingress. É usado para se comunicar com uma autoridade certificadora para liberar um certificado SSL para o domínio escolhido. Dessa forma, é possível acessar a aplicação com HTTPS (em vez de somente HTTP). Por exemplo, <https://google.com> em vez de <http://google.com> .
 
-## Control Loop
+## Instalar cert-manager (sem Helm)
 
-Em robótica, é muito comum o uso de "loops de controle" (control loops). Um exemplo de control loop é um termostato de uma sala.
+Coberto na seção de [setup](../setup). O foco desta parte não é aprender a instalar o `cert-manager`, é aprender a usar.
 
-Quando você define a temperatura, isso indica ao termostato sobre o seu estado desejado. O termostato atua de forma a trazer o estado atual mais perto do estado desejado, ligando ou desligando o equipamento.
+## Criar recursos
 
-No Kubernetes, controladores são loops de controle que observam o estado do seu cluster, e então fazer ou requisitar mudanças onde necessário. Cada controlador tenta mover o estado atual do cluster mais perto do estado desejado.
-
-## Trecho de Código
-
-A seguinte função executa a lógica principal do "control loop" do recurso do tipo StatefulSet.
-
-```go
-func (ssc *defaultStatefulSetControl) UpdateStatefulSet(ctx context.Context, set *apps.StatefulSet, pods []*v1.Pod) (*apps.StatefulSetStatus, error) {
-	set = set.DeepCopy() // set is modified when a new revision is created in performUpdate. Make a copy now to avoid mutation errors.
-
-	// list all revisions and sort them
-	revisions, err := ssc.ListRevisions(set)
-	if err != nil {
-		return nil, err
-	}
-	history.SortControllerRevisions(revisions)
-
-	currentRevision, updateRevision, status, err := ssc.performUpdate(ctx, set, pods, revisions)
-	if err != nil {
-		errs := []error{err}
-		if agg, ok := err.(utilerrors.Aggregate); ok {
-			errs = agg.Errors()
-		}
-		return nil, utilerrors.NewAggregate(append(errs, ssc.truncateHistory(set, pods, revisions, currentRevision, updateRevision)))
-	}
-
-	// maintain the set's revision history limit
-	return status, ssc.truncateHistory(set, pods, revisions, currentRevision, updateRevision)
-}
+```bash
+kubectl apply -f parte06 --namespace default --kubeconfig kubeconfig
 ```
 
-Em <https://github.com/kubernetes/kubernetes/blob/77c3859aeee97d6d118d9494c950766a4c296734/pkg/controller/statefulset/stateful_set_control.go#L79-L100>
+## Testar HTTPS
+
+Para dar 100% certo (receber um certificado SSL de uma autoridade certificadora reconhecida internacionalmente), é necessário possuir um IP público. Como estamos rodando localmente, o máximo que vamos conseguir é um certificado SSL assinado pelo próprio cluster Kubernetes.
+
+O erro "Autoridade Certificadora Inválida" é sinal de que, no ambiente local, funcionou na medida do possível. Qualquer outro erro significa que deu errado.
+
+Para testar, acessar <https://aula.gces.com/>
+
+## Deletar recursos
+
+```bash
+kubectl delete -f parte06 --namespace default --kubeconfig kubeconfig
+```

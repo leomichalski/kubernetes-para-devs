@@ -30,7 +30,7 @@ Observa os Pods recém-criados e que ainda não foram atribuídos a um nó, e se
 
 Componente da camada de gerenciamento que executa os processos de controlador.
 
-Mais na [Parte 6](../parte06) da aula.
+Mais na [Parte 7](../parte07) da aula.
 
 #### kube-cloud-controller-manager (opcional)
 

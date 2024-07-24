@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: exemplo
+  # Labels do Service
+  labels:
+    app: exemplo
+spec:
+  # Especifica a qual/quais Pods o Service se refere (nao Deployment!!)
+  selector:
+    app: exemplo
+  ports:
+  - protocol: TCP
+    port: 8000
+    targetPort: 8000
+    name: http
