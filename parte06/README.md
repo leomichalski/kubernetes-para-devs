@@ -25,3 +25,24 @@ Para testar, acessar <https://aula.gces.com/>
 ```bash
 kubectl delete -f parte06 --namespace default --kubeconfig kubeconfig
 ```
+
+## Diferenças para a parte05
+
+```diff
+diff --color -r '--exclude=README.md' parte05/django-ingress.yaml parte06/django-ingress.yaml
+4a5,6
+>   annotations:
+>     cert-manager.io/issuer: exemplo
+8a11,14
+>   tls:
+>   - hosts:
+>     - aula.gces.com
+>     secretName: ingress-exemplo
+Only in parte06: django-issuer.yaml
+```
+
+Comando usado:
+
+```bash
+diff -r parte05 parte06 --exclude=README.md
+```

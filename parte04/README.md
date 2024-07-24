@@ -21,3 +21,34 @@ kubectl apply -f parte04 --namespace default --kubeconfig kubeconfig
 ```bash
 kubectl delete -f parte04 --namespace default --kubeconfig kubeconfig
 ```
+
+## Diferenças para a parte03
+
+```diff
+diff --color -r '--exclude=README.md' parte03/django-deployment.yaml parte04/django-deployment.yaml
+10d9
+<   replicas: 3
+35,41c34,40
+<         # resources:
+<         #   limits:
+<         #     memory: 1.5Gi
+<         #     cpu: "1"
+<         #   requests:
+<         #     memory: 1.5Gi
+<         #     cpu: "1"
+---
+>         resources:
+>           limits:
+>             memory: 1.5Gi
+>             cpu: "1"
+>           requests:
+>             memory: 1.5Gi
+>             cpu: "1"
+Only in parte04: django-hpa.yaml
+```
+
+Comando usado:
+
+```bash
+diff -r parte03 parte04 --exclude=README.md
+```

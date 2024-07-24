@@ -47,3 +47,19 @@ Acessar <http://aula.gces.com> em um browser para ver se funcionou.
 ```bash
 kubectl delete -f parte05 --namespace default --kubeconfig kubeconfig
 ```
+
+## Diferenças para a parte04
+
+```diff
+diff --color -r '--exclude=README.md' parte04/django-deployment.yaml parte05/django-deployment.yaml
+29a30,31
+>         - name: ALLOWED_HOSTS
+>           value: localhost,aula.gces.com
+Only in parte05: django-ingress.yaml
+```
+
+Comando usado:
+
+```bash
+diff -r parte04 parte05 --exclude=README.md
+```
