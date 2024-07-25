@@ -3,6 +3,7 @@
 ## Organização
 
 ./kubernetes-para-devs
+ * [requisitos](./requisitos): necessário saber para a aula.
  * [setup](./setup): Setup das ferramentas necessárias para seguir o passo-a-passo.
  * [parte00](./parte00): Arquitetura.
  * [parte01](./parte01): Pod: um conjunto de containers.
