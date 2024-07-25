@@ -2,6 +2,8 @@
 
 É uma forma de se fazer um conjunto de Pods. Outra possibilidade é usar recursos de tipo DaemonSet ou StatefulSet. A diferença entre um Deployment e um DaemonSet é que o DaemonSet roda um pod em cada nó do cluster. A diferença entre um Deployment e um StatefulSet é que o StatefulSet dá um número para cada pod, mantendo separadamente o estado de cada um deles (como volumes etc).
 
+Mais em: https://kubernetes.io/docs/concepts/workloads/controllers/deployment/
+
 ## Ver Deployments existentes no namespace "default"
 
 ```bash

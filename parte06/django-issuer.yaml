@@ -3,6 +3,7 @@ kind: Issuer
 metadata:
   name: exemplo
 spec:
+  # Spec para um Issuer assinado pela Let's Encrypt
   acme:
     email: leonardomichalskim@gmail.com
     privateKeySecretRef:

@@ -2,6 +2,8 @@
 
 Pode se referir a vários Deployments diferentes. Serve para fazer o balanceamento de carga entre os pods do Deployment.
 
+Mais em: <https://kubernetes.io/docs/concepts/services-networking/service/>
+
 ## Ver Services existentes
 
 ```bash

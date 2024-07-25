@@ -2,6 +2,8 @@
 
 Pode se referir a vários Services. Serve para atribuir um DNS (como google.com), que pode ser usado para acessar a aplicação que estiver rodando em determinados Deployments, DaemonSets ou StatefulSets.
 
+Mais em: https://kubernetes.io/docs/concepts/services-networking/ingress/
+
 ## Setup do ingress-nginx
 
 Coberto na seção de [setup](../setup). O foco desta parte não é aprender a instalar o `ingress-nginx`, é aprender a usar.

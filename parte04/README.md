@@ -4,6 +4,8 @@
 
 É usado para controlar a quantidade de Pods que há em um Deployment. Por exemplo, se o uso de CPU estiver muito alto, o HPA aumentaria a quantidade de pods. Também é possível utilizar o Vertical Pod Autoscaler (VPA), que aumentaria a quantidade de recursos de cada pod em vez de aumentar a quantidade de Pod.
 
+Mais em: <https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale-walkthrough/>
+
 ## Ver HPAs existentes
 
 ```bash
