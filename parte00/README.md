@@ -15,7 +15,7 @@ No diagrama abaixo, temos uma arquitetura mais detalhada de um cluster.
 
 ![Diagrama detalhado de um cluster](../assets/kubernetes-cluster-architecture.svg)
 
-## O que têm em um Control Plane?
+## O que tem em um Control Plane?
 
 Com base no [diagrama acima](../assets/kubernetes-cluster-architecture.svg), temos os seguintes componentes em um Control Plane:
 
@@ -25,7 +25,7 @@ Com base no [diagrama acima](../assets/kubernetes-cluster-architecture.svg), tem
 - [`kube-controller-manager`](https://kubernetes.io/docs/reference/command-line-tools-reference/kube-controller-manager/): é um componente (daemon) que executa processos de controle do cluster. Ele conversa com o `kube-api-server` para verificar o estado do cluster e, com base nesse estado, executa processos de controle.
 - [`kube-cloud-controller-manager`](https://kubernetes.io/docs/concepts/architecture/cloud-controller/): a ideia desse componente é a de realizar a integração de um cluster com a API de um provedor de cloud, separando os componentes que interagem com a cloud com os que interagem somente com o cluster. 
 
-## O que têm em um Worker Node?
+## O que tem em um Worker Node?
 
 - [`kubelet`](https://kubernetes.io/docs/reference/command-line-tools-reference/kubelet/): é um processo que recebe e executa comandos do Control Plane, servindo como um "gerenciador" dos Pods de um Node. Ele garante que o node e os containers estão saudáveis por meio de healthchecks, entre outras funções.
 - [`kube-proxy`](https://kubernetes.io/docs/reference/command-line-tools-reference/kube-proxy/): é um [proxy de rede](https://en.wikipedia.org/wiki/Proxy_server) interno. Ele garante que requisições a um Service sejam direcionadas ao Pod correto por trás do Service. Caso um service tenha muitos Pods, ele também pode realizar [load balancing](https://en.wikipedia.org/wiki/Load_balancing_(computing)).
